@@ -5,10 +5,10 @@ const results = document.querySelector("#result");
 const resultsContainer = document.querySelector("#results");
 playerArr = []; //Array that holds player choices
 computerArr = []; //Array that holds computer choices
-let wins = 0;//Number of wins the player has achieved
+let wins = 0; //Number of wins the player has achieved
 let numGames = 0;
 
-function reset(){
+function reset() {
     playerArr.length = 0;
     computerArr.length = 0;
     wins = 0;
@@ -17,6 +17,7 @@ function reset(){
     computer.textContent = "";
     results.textContent = "";
 }
+
 function playerSelection(selection) {
 
     console.log("player selection: " + selection);
@@ -36,10 +37,10 @@ function playerSelection(selection) {
                 resultsContainer.appendChild(results);
             } else {
                 results.textContent = "You have reach the maximum number of games\n" +
-                "you have won a total of: " + wins + " times";
+                    "you have won a total of: " + wins + " times";
                 player.textContent = "Your last six plays were: " + playerArr.toString();
                 computer.textContent = "The computer's last six plays were: " + computerArr.toString();
-                
+
             }
 
             numGames++;
