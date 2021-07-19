@@ -8,7 +8,7 @@ const buttons = document.querySelectorAll('button');
 const content = document.createElement('div');
 
 //Content
-const redP = document.createElement('p')//Red P
+const redP = document.createElement('p') //Red P
 const blueH = document.createElement('h3') //Blue H
 const pinkDiv = document.createElement('div') //black border Div with pink background
 
@@ -45,11 +45,11 @@ btn.addEventListener('click', () => {
 //Button Events
 btn3.onclick = () => alert("Hi from button 3");
 
-function alertFunction(){
+function alertFunction() {
     alert("Hi from alert function (button 2)");
 }
 
-buttons.forEach((button) =>{
+buttons.forEach((button) => {
     button.addEventListener('click', () =>
-    alert(button.id))
+        alert(button.id))
 })
