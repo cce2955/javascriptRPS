@@ -13,6 +13,9 @@ function reset(){
     computerArr.length = 0;
     wins = 0;
     numGames = 0;
+    player.textContent = "";
+    computer.textContent = "";
+    results.textContent = "";
 }
 function playerSelection(selection) {
 
@@ -124,7 +127,7 @@ function computerSelection() {
         confirm = attack[2];
     }
 
-    computer.textContent = "Computer has chosen: " + confirm.toString();
+    computer.textContent = "Computer has chosen: " + confirm.toString() + "";
     computerArr.push(confirm.toString())
     return confirm;
 }
