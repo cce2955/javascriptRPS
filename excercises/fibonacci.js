@@ -13,7 +13,6 @@ export function fibCalc(generator, sequence) {
 
         if (i === parseInt(sequence)) {
             sequenceValue = sum;
-
             break;
         }
     }

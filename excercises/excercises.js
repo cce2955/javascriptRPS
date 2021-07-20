@@ -1,3 +1,4 @@
+import { assignBook } from "./books.js";
 import {
     parseData,
     add,
@@ -18,14 +19,25 @@ import {
 const container = document.querySelector("#contentContainer");
 const palindromeContainer = document.querySelector("#palindromeContainer");
 const fibonacciContainer = document.querySelector("#fibonacciContainer")
-    //Content
+const bookContainer = document.querySelector("#bookContainer");
+//Content
 const content = document.createElement("div");
 const palindromeContent = document.createElement("div");
 const fibonacciContent = document.createElement("div");
+const bookContent = document.createElement("div");
+//further div for books
+const bookErrorDiv = document.createElement("div");
+const bookMissingAuthor = document.createElement("p");
+const bookMissingName = document.createElement("p");
 //Append
 container.appendChild(content);
 palindromeContainer.appendChild(palindromeContent);
 fibonacciContainer.appendChild(fibonacciContent);
+bookContainer.appendChild(bookContent);
+bookContainer.appendChild(bookErrorDiv);
+bookErrorDiv.appendChild(bookMissingName);
+bookErrorDiv.appendChild(bookMissingAuthor);
+
 /*
 
 calculator
@@ -110,4 +122,26 @@ function showFib() {
         fibonacciContent.textContent = "Sorry, that is not a number, please try again"
     }
 
+}
+
+//books
+document.getElementById('bookSubmit').addEventListener('click', storeBook, true);
+
+function storeBook() {
+    const bookName = document.getElementById("bookName").value;
+    const author = document.getElementById("bookAuthor").value;
+    if (assignBook(bookName, author)) {
+        bookContent.textContent = "Book added to database"
+        bookMissingName.textContent = "";
+        bookMissingAuthor.textContent = "";
+    } else {
+        if (bookName === "") {
+            bookContent.textContent = "";
+            bookMissingName.textContent = "Book is missing title";
+        }
+        if (author === "") {
+            bookContent.textContent = "";
+            bookMissingAuthor.textContent = "Book is missing Author"
+        }
+    }
 }
