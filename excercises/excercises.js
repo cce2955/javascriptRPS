@@ -7,18 +7,25 @@ import {
     storeValue,
     arr
 } from "./calculator.js";
-import { testPalidrome } from "./palindrome.js";
+import {
+    fibCalc
+} from "./fibonacci.js";
+import {
+    testPalidrome
+} from "./palindrome.js";
 
 //Containers
 const container = document.querySelector("#contentContainer");
 const palindromeContainer = document.querySelector("#palindromeContainer");
-//Content
+const fibonacciContainer = document.querySelector("#fibonacciContainer")
+    //Content
 const content = document.createElement("div");
 const palindromeContent = document.createElement("div");
+const fibonacciContent = document.createElement("div");
 //Append
 container.appendChild(content);
 palindromeContainer.appendChild(palindromeContent);
-
+fibonacciContainer.appendChild(fibonacciContent);
 /*
 
 calculator
@@ -41,8 +48,7 @@ export function showInput() {
 
     if (parseData(input)) {
         content.textContent = " ";
-        //This will be a huge problem later but this is a weird bug
-        //The init only gives a psychological bandaid
+
         if (arr.length === 0) {
             content.textContent = "First Value stored: " + input;
             storeValue(input);
@@ -78,12 +84,30 @@ export function showInput() {
 //Palindromes
 document.getElementById('palindromeSubmit').addEventListener('click', checkPalidrome, true);
 
-function checkPalidrome(){
+function checkPalidrome() {
     const input = document.getElementById("palindrome").value;
-    
-    if(testPalidrome(input)){
-        palindromeContent.textContent ="This is a palindrome";
-    }else{
+
+    if (testPalidrome(input)) {
+        palindromeContent.textContent = "This is a palindrome";
+    } else {
         palindromeContent.textContent = "This is not a palindrome"
     }
+}
+
+//Fibonacci
+document.getElementById('fibSubmit').addEventListener('click', showFib, true);
+
+function showFib() {
+    const generator = document.getElementById("fibGenInput").value;
+    const place = document.getElementById("fibPlaceInput").value;
+    if (!isNaN(generator) && !isNaN(place)) {
+        if (place > 100 || place < 0) {
+            fibonacciContent.textContent = "Sorry, that is not a valid value, please try to be between 0 and 100"
+        } else {
+            fibonacciContent.textContent = "The value of Fibonacci Sequence starting at: " + generator + " at place: " + place + " is: " + fibCalc(generator, place);
+        }
+    } else {
+        fibonacciContent.textContent = "Sorry, that is not a number, please try again"
+    }
+
 }
