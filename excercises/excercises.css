@@ -1,0 +1,11 @@
+p{
+    align-content: center;
+    font-family: monospace;
+}
+
+#calculator{
+    font-family: monospace;
+    display: inline-block;
+    margin-block: 10px;
+    flex-wrap: wrap;
+}
