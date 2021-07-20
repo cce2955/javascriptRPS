@@ -7,11 +7,17 @@ import {
     storeValue,
     arr
 } from "./calculator.js";
+import { testPalidrome } from "./palindrome.js";
 
+//Containers
 const container = document.querySelector("#contentContainer");
-const content = document.createElement("div")
-
+const palindromeContainer = document.querySelector("#palindromeContainer");
+//Content
+const content = document.createElement("div");
+const palindromeContent = document.createElement("div");
+//Append
 container.appendChild(content);
+palindromeContainer.appendChild(palindromeContent);
 
 /*
 
@@ -70,3 +76,14 @@ export function showInput() {
 }
 
 //Palindromes
+document.getElementById('palindromeSubmit').addEventListener('click', checkPalidrome, true);
+
+function checkPalidrome(){
+    const input = document.getElementById("palindrome").value;
+    
+    if(testPalidrome(input)){
+        palindromeContent.textContent ="This is a palindrome";
+    }else{
+        palindromeContent.textContent = "This is not a palindrome"
+    }
+}
