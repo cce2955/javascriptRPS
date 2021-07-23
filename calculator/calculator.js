@@ -8,13 +8,14 @@ const buttonText = ["1", "2", "3", "+", "4", "5", "6",
 ];
 //Enumerators for calculator state
 let State = {
-        ADD: 1,
-        SUB: 2,
-        MUL: 3,
-        DIV: 4
+    ADD: 1,
+    SUB: 2,
+    MUL: 3,
+    DIV: 4
 
-    }
-    //This array will take the user input to 5 spaces;
+}
+let currentState = 0;
+//This array will take the user input to 5 spaces;
 let userArr = [];
 //This array will take the previously entered numbers and store them
 let operationArr = [];
@@ -69,22 +70,24 @@ function click() {
         //If not a number, join the array developed above
     } else {
         if (operationArr.length === 0) {
+            //If decimal has not been used, allow user to insert decimal
             if (event.target.innerText === "." && decimal === false) {
                 userArr.push(".");
                 outPut.textContent = userArr.join("");
                 decimal = true;
 
             }
+            //If decimal has been used, refuse additional decimal
             if (event.target.innerText === "." && decimal === true) {
                 outPut.textContent = userArr.join("");
             }
+            //If user has not entered anything, deny them to use operators (+,-,*,/)
             if (userArr.length === 0) {
                 outPut.textContent = "Please enter a number before performing an operation"
             } else {
+                //Otherwise go ahead
                 operationArr.push(userArr.join(""));
             }
-            console.log(operationArr.length)
-
         } else {
             //Empty the user array
             userArr.length = 0;
@@ -92,19 +95,26 @@ function click() {
             if (operationArr.length > 0) {
                 //Following the logic, user will be ready to
                 //perform an operation
-                console.log(event.target.innerText)
-                switch (event.target.innerText) {
+
+                switch (event.target.textContent) {
                     case "+":
-                        State.ADD;
+                        currentState = State.ADD;
+                        break;
                     case "-":
-                        State.SUB;
+                        currentState = State.SUB;
+                        break;
                     case "*":
-                        State.MUL;
+                        currentState = State.MUL;
+                        break;
                     case "/":
-                        State.DIV;
+                        currentState = State.DIV;
+                        break;
                     default:
+
                         console.log("Default state reached");
                 }
+                console.log(currentState)
+
 
             } else {
 
