@@ -3,18 +3,18 @@ const guiContainer = document.querySelector(".mainCalculator")
 const outputContainer = document.querySelector(".outputBox")
 const submitContainer = document.querySelector(".submitCalculator")
 const buttonText = ["1", "2", "3", "+", "4", "5", "6",
-
     "-", "7", "8", "9", "*", "0", ".", "-", "/"
 ];
 //Enumerators for calculator state
 let State = {
-    ADD: 1,
-    SUB: 2,
-    MUL: 3,
-    DIV: 4
+        ADD: 0,
+        SUB: 1,
+        MUL: 2,
+        DIV: 3
 
-}
-let currentState = 0;
+    }
+    //Holds the curren
+let currentState = State;
 //This array will take the user input to 5 spaces;
 let userArr = [];
 //This array will take the previously entered numbers and store them
@@ -43,7 +43,6 @@ createGrid = () => {
 createGrid();
 for (let i = 0; i < document.querySelectorAll("button").length - 1; i++) {
     document.getElementById(i).addEventListener("click", click);
-    console.log(document.getElementById(i))
 }
 
 function click() {
@@ -92,33 +91,32 @@ function click() {
             //Empty the user array
             userArr.length = 0;
             //Don't do anything if first time operation
-            if (operationArr.length > 0) {
-                //Following the logic, user will be ready to
-                //perform an operation
-
-                switch (event.target.textContent) {
-                    case "+":
-                        currentState = State.ADD;
-                        break;
-                    case "-":
-                        currentState = State.SUB;
-                        break;
-                    case "*":
-                        currentState = State.MUL;
-                        break;
-                    case "/":
-                        currentState = State.DIV;
-                        break;
-                    default:
-
-                        console.log("Default state reached");
-                }
-                console.log(currentState)
-
-
-            } else {
-
+            //if (operationArr.length > 0) {
+            //Following the logic, user will be ready to
+            //perform an operation
+            switch (event.target.textContent) {
+                case "+":
+                    outPut.textContent = operationArr + " + "
+                    currentState = State.ADD;
+                    break;
+                case "-":
+                    outPut.textContent = operationArr + " - "
+                    currentState = State.SUB;
+                    break;
+                case "*":
+                    outPut.textContent = operationArr + " * "
+                    currentState = State.MUL;
+                    break;
+                case "/":
+                    outPut.textContent = operationArr + " / "
+                    currentState = State.DIV;
+                    break;
+                default:
+                    console.log("Default state reached");
             }
+            console.log(currentState)
+
+            //}
         }
     }
 
