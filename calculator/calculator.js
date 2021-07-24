@@ -20,9 +20,13 @@ let userArr = [];
 //This array will take the previously entered numbers and store them
 let operationArr = [];
 //This variable lets the program know whether to accept any more decimals
-let decimal = false;
+let isDecimal = false;
+//This boolean checks if the user has input the first number or not
+let isFirst = false;
+
 const outPut = document.createElement("textbox");
 const submit = document.createElement("button");
+
 createGrid = () => {
 
     submit.textContent = "Submit"
@@ -70,14 +74,14 @@ function click() {
     } else {
         if (operationArr.length === 0) {
             //If decimal has not been used, allow user to insert decimal
-            if (event.target.innerText === "." && decimal === false) {
+            if (event.target.innerText === "." && isDecimal === false) {
                 userArr.push(".");
                 outPut.textContent = userArr.join("");
-                decimal = true;
+                isDecimal = true;
 
             }
             //If decimal has been used, refuse additional decimal
-            if (event.target.innerText === "." && decimal === true) {
+            if (event.target.innerText === "." && isDecimal === true) {
                 outPut.textContent = userArr.join("");
             }
             //If user has not entered anything, deny them to use operators (+,-,*,/)
@@ -91,33 +95,42 @@ function click() {
             //Empty the user array
             userArr.length = 0;
             //Don't do anything if first time operation
-            //if (operationArr.length > 0) {
+
             //Following the logic, user will be ready to
             //perform an operation
             switch (event.target.textContent) {
                 case "+":
-                    outPut.textContent = operationArr + " + "
+                    arrIterator(operationArr, " + ")
                     currentState = State.ADD;
                     break;
                 case "-":
-                    outPut.textContent = operationArr + " - "
+                    arrIterator(operationArr, " - ")
                     currentState = State.SUB;
                     break;
                 case "*":
-                    outPut.textContent = operationArr + " * "
+                    arrIterator(operationArr, " * ")
                     currentState = State.MUL;
                     break;
                 case "/":
-                    outPut.textContent = operationArr + " / "
+                    arrIterator(operationArr, " / ")
                     currentState = State.DIV;
                     break;
                 default:
                     console.log("Default state reached");
             }
             console.log(currentState)
-
-            //}
         }
     }
 
+}
+
+function arrIterator(array, operatorString) {
+    for (let i = 0; i < array.length; i++) {
+        if (i === array.length) {
+            outPut.textContent = array[i];
+        } else {
+            outPut.textContent = array[i] + "" + operatorString;
+        }
+
+    }
 }
