@@ -26,6 +26,8 @@ let isFirst = false;
 
 const outPut = document.createElement("textbox");
 const submit = document.createElement("button");
+submit.style.width = 300;
+submit.style.height = 50;
 
 createGrid = () => {
 
@@ -33,7 +35,7 @@ createGrid = () => {
 
     outPut.textContent = "Enter a value with the buttons below"
     outputContainer.appendChild(outPut);
-    submitContainer.appendChild(submit);
+
     for (let i = 0; i < 16; i++) {
         const div = document.createElement("button");
         div.id = i;
@@ -41,8 +43,10 @@ createGrid = () => {
         div.classList.add("square");
         guiContainer.appendChild(div);
     }
+    submitContainer.appendChild(submit);
 
 };
+
 //Create Grid
 createGrid();
 for (let i = 0; i < document.querySelectorAll("button").length - 1; i++) {

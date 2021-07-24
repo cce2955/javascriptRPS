@@ -53,5 +53,7 @@ html {
 .submitCalculator {
     height: 300px;
     width: 400px;
-    align-items: center;
+    margin-top: 10px;
+    margin-left: 50px;
+    display: inline-grid;
 }
